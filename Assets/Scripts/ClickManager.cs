@@ -13,6 +13,8 @@ public class ClickManager : MonoBehaviour
     [SerializeField] GameObject playerControllerGO;
     [SerializeField] GameObject brokenCableColGO;
     [SerializeField] GameObject brokenCablePEGO;
+    [SerializeField] GameObject IngredientsGO;
+
 
     int hoverI = 0;
     string rcHitGlob;
@@ -85,7 +87,7 @@ public class ClickManager : MonoBehaviour
             {
                 mainTextSpeak.text = "Now I got money, but the cook says he does not have enough ingredients. I should help him";
             }
-            else if (watchSelled && ingredientsPickedUp)
+            else if (watchSelled && ingredientsPickedUp && !cableFixed)
             {
                 mainTextSpeak.text = "Now he got the ingredients but says that some cable is broken. When will I get my hotdog!?!?";
             }
@@ -98,11 +100,7 @@ public class ClickManager : MonoBehaviour
         {
             mainTextSpeak.text = "Just a normal person like me...";
         }
-        else if (rcHit == "Ingredients")
-        {
-            ingredientsPickedUp = true;
-            mainTextSpeak.text = "Now I have to bring them to the hotdogstand!";
-        }
+
         else if (rcHit == "BrokenCable")
         {
             if (ingredientsPickedUp)
@@ -112,6 +110,17 @@ public class ClickManager : MonoBehaviour
             else
             {
                 mainTextSpeak.text = "I have to do other things first";
+            }
+        }
+        else if (rcHit == "Ingredients")
+        {
+            if (watchSelled)
+            {
+                mainTextSpeak.text = "Maybe I should take this";
+            }
+            else
+            {
+                SetRandomDenial();
             }
         }
     }
@@ -142,14 +151,9 @@ public class ClickManager : MonoBehaviour
         }
         else if (rcHit == "Ingredients")
         {
-            if (watchSelled)
-            {
-                mainTextSpeak.text = "Maybe I should take this";
-            }
-            else
-            {
-                SetRandomDenial();
-            }
+            Destroy(IngredientsGO);
+            ingredientsPickedUp = true;
+            mainTextSpeak.text = "Now I have to bring them to the hotdogstand!";
         }
         else if (rcHit == "BrokenCable")
         {
