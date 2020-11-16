@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerController : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Camera cam;
     NavMeshAgent agent;
     ThirdPersonCharacter character;
-    // Update is called once per frame
+    [SerializeField] Text textSpeakGO;
     void Start()
     {
         cam = Camera.main;
@@ -25,7 +26,15 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                agent.SetDestination(hit.point);
+                string clickedObject = hit.transform.name;
+                if (clickedObject.Contains("Patio") || clickedObject.Contains("road") || clickedObject.Contains("Ground"))
+                {
+                    agent.SetDestination(hit.point);
+                }
+                else
+                {
+                    textSpeakGO.text = "I can't walk on this";
+                }
             }
         }
         if (agent.remainingDistance > agent.stoppingDistance)
