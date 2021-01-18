@@ -93,36 +93,37 @@ public class ClickManager : MonoBehaviour
             }
             else if (watchSelled && ingredientsPickedUp && cableFixed)
             {
-                mainTextSpeak.text = "Now I have to get rid of the people";
+                mainTextSpeak.text = "Nice!!! I finaly got my hotdog. And it is delicious";
             }
-        }
-        else if (rcHit == "Person")
-        {
-            mainTextSpeak.text = "Just a normal person like me...";
-        }
+            else if (rcHit == "Person")
+            {
+                mainTextSpeak.text = "Just a normal person like me...";
+            }
 
-        else if (rcHit == "BrokenCable")
-        {
-            if (ingredientsPickedUp)
+            else if (rcHit == "BrokenCable")
             {
-                mainTextSpeak.text = "I could repair this";
+                if (ingredientsPickedUp)
+                {
+                    mainTextSpeak.text = "I could repair this";
+                }
+                else
+                {
+                    mainTextSpeak.text = "I have to do other things first";
+                }
             }
-            else
+            else if (rcHit == "Ingredients")
             {
-                mainTextSpeak.text = "I have to do other things first";
+                if (watchSelled)
+                {
+                    mainTextSpeak.text = "Maybe I should take this";
+                }
+                else
+                {
+                    SetRandomDenial();
+                }
             }
         }
-        else if (rcHit == "Ingredients")
-        {
-            if (watchSelled)
-            {
-                mainTextSpeak.text = "Maybe I should take this";
-            }
-            else
-            {
-                SetRandomDenial();
-            }
-        }
+        mainTextSpeak.GetComponent<CheckIfTextChanged>().StartAnimating();
     }
     public void UseHover()
     {
@@ -173,6 +174,7 @@ public class ClickManager : MonoBehaviour
         {
             SetRandomDenial();
         }
+        mainTextSpeak.GetComponent<CheckIfTextChanged>().StartAnimating();
     }
     void SetRandomDenial()
     {
@@ -205,3 +207,4 @@ public class ClickManager : MonoBehaviour
         return null;
     }
 }
+
