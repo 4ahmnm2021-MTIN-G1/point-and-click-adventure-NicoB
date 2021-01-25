@@ -18,7 +18,12 @@ WebGL 1920x1080
 WebGL has to be installed + stable internet connection
 
 ### Third party material: 
-None
+* MainCharacter: https://learn.unity.com/tutorial/unity-navmesh#; 
+* OtherCharacters: https://www.mixamo.com/;
+* Houses: https://assetstore.unity.com/packages/3d/environments/urban/low-poly-european-city-pack-71042; 
+* HotDog Stand: https://sketchfab.com/3d-models/hot-dog-van-draft-homework-8-6b27ad69291f406687504ba0a46132d4#download;
+
+* Sounds: https://www.soundsnap.com/;
 
 ### Project state: 
 100%
